@@ -3,13 +3,12 @@ const express = require('express');
 const routes = require('./routes');
 const config = require('./config');
 const setupViewEngine = require('./config/viewEngine');
-const cubeController = require('./controllers/cubeController')
 
 const app = express();
 setupViewEngine(app);
 
 app.use(express.static('src/public'));
-app.use(routes)
+app.use(express.urlencoded({ extended: false }));
+app.use(routes);
 
-
-app.listen(config.PORT, () => console.log(`Server listening on ${config.PORT}`));
+app.listen(config.PORT, () => console.log(`Server listening on ${config.PORT}...`));
