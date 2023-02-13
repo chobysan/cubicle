@@ -1,5 +1,4 @@
-//const db = require('../db.json');
-const Cube = require('../models/cube')
+const Cube = require('../models/Cube');
 
 exports.getHomePage = async (req, res) => {
 	const { search, from: difficultyFrom, to: difficultyTo } = req.query;
@@ -8,7 +7,9 @@ exports.getHomePage = async (req, res) => {
 
 	// TODO: Use db filtration instead of memory filtering
 	if (search) {
-		cubes = cubes.filter((cube) => cube.name.toLowerCase().includes(search.toLowerCase()));
+		cubes = cubes.filter((cube) =>
+			cube.name.toLowerCase().includes(search.toLowerCase())
+		);
 	}
 	if (difficultyFrom) {
 		cubes = cubes.filter((cube) => cube.difficultyLevel >= difficultyFrom);

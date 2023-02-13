@@ -8,14 +8,15 @@ const accessorySchema = new mongoose.Schema({
 	imageUrl: {
 		type: 'string',
 		required: true,
+		match: /^https?:\/\//,
 	},
 	description: {
 		type: 'string',
 		required: true,
-        maxLength: 50,
+		maxLength: 50,
 	},
 });
 
-const Accessory = mongoose.model('Accessory', accessorySchema)
+const Accessory = mongoose.model('Accessory', accessorySchema);
 
 module.exports = Accessory;
