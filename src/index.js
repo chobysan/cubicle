@@ -1,7 +1,7 @@
 const express = require('express');
 
 const routes = require('./routes');
-const config = require('./config/index');
+const config = require('./config');
 const setupViewEngine = require('./config/viewEngine');
 const initDatabase = require('./config/db');
 
@@ -18,4 +18,4 @@ initDatabase()
 			console.log(`Server listening on port:${config.PORT}...`)
 		)
 	)
-	.catch((err) => console.error(err));
+	.catch((err) => console.error(err.message));
