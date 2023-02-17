@@ -3,7 +3,7 @@ const Accessory = require('../models/Accessory');
 const cubeService = require('../services/cubeService');
 const cubeUtils = require('../utils/cubeUtils');
 
-exports.getCreateCube = (req, res) => res.render('create');
+exports.getCreateCube = (req, res) => res.render('cube/create');
 
 exports.postCreateCube = async (req, res) => {
 	console.log(req.user);
@@ -64,4 +64,9 @@ exports.getDeleteCube = async (req, res) => {
 		cube.difficultyLevel
 	);
 	res.render('cube/delete', { cube, difficultyLevel });
+};
+
+exports.postDeleteCube = async (req, res) => {
+	cubeService.delete(req.params.cubeId);
+	res.redirect('/');
 };

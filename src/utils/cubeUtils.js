@@ -1,5 +1,5 @@
 exports.generateDifficultyLevel = (currentLevel) => {
-	const difficultyLevel = [
+	const difficultyLevels = [
 		{ key: 1, label: 'Very Easy', selected: false },
 		{ key: 2, label: 'Easy', selected: false },
 		{ key: 3, label: 'Medium (Standard 3x3)', selected: false },
@@ -7,5 +7,5 @@ exports.generateDifficultyLevel = (currentLevel) => {
 		{ key: 5, label: 'Expert', selected: false },
 		{ key: 6, label: 'Hardcore', selected: false },
 	];
-	return difficultyLevel.map((x) => x.key === currentLevel ? { ...x, selected: true } : x);
+	return difficultyLevels.map((x) => x.key === currentLevel ? { ...x, selected: true } : x);
 };
