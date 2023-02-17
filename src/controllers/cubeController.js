@@ -6,9 +6,14 @@ const cubeUtils = require('../utils/cubeUtils');
 exports.getCreateCube = (req, res) => res.render('cube/create');
 
 exports.postCreateCube = async (req, res) => {
-	console.log(req.user);
 	const { name, description, imageUrl, difficultyLevel } = req.body;
-	const cube = new Cube({ name, description, imageUrl, difficultyLevel });
+	const cube = new Cube({
+		name,
+		description,
+		imageUrl,
+		difficultyLevel,
+		owner: req.user._id,
+	});
 	await cube.save();
 	res.redirect('/');
 };
@@ -20,7 +25,8 @@ exports.getDetails = async (req, res) => {
 	if (!cube) {
 		return res.redirect('/404');
 	}
-	res.render('cube/details', { cube });
+	const isOwner = cube.owner == req.user.id;
+	res.render('cube/details', { cube, isOwner });
 };
 
 exports.getAttachAccessory = async (req, res) => {
